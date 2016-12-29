@@ -9,6 +9,11 @@
 # textmo
 A simple hapijs plugin for sending sms. Uses [nexmo](https://github.com/Nexmo/nexmo-node).
 
+## Installation
+```bash
+npm install textmo
+```
+
 ## Usage
 ```js
 const TextMo = require('textmo');
@@ -26,6 +31,27 @@ server.register({
         config: textMoConfig
     }
 });
+```
+* `apiKey` - API Key from [Nexmo](https://www.nexmo.com/)
+* `apiSecret` - API SECRET from [Nexmo](https://www.nexmo.com/)
+* `options` - Additional options for the constructor
+
+Options are:
+
+```js
+{
+  // If true, log information to the console
+  debug: true|false,
+  // append info the the User-Agent sent to Nexmo
+  // e.g. pass 'my-app' for /nexmo-node/1.0.0/4.2.7/my-app
+  appendToUserAgent: string,
+  // Set a custom logger
+  logger: {
+    log: function() {level, args...}
+    info: function() {args...},
+    warn: function() {args...}
+  }
+}
 ```
 
 ## Sending sms message
@@ -48,6 +74,8 @@ request.server.plugins.textmo.send(smsConfig, (err, res) => {
     return reply(res);
 });
 ```
+* `options` - parameter is optional. See [SMS API Reference](https://docs.nexmo.com/messaging/sms-api/api-reference#request)
+
 ## Contributing
 * Include 100% test coverage.
 * Follow the [Hapi coding conventions](http://hapijs.com/styleguide)
