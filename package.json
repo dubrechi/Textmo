@@ -2,7 +2,7 @@
   "name": "textmo",
   "description": "SMS sending utility",
   "author": "dubrechi",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "lib/index.js",
   "engines": {
     "node": ">=4.0.0"
