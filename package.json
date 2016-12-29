@@ -1,0 +1,24 @@
+{
+  "name": "textmo",
+  "description": "SMS sending utility",
+  "author": "dubrechi",
+  "version": "0.2.0",
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "lab -c -v -L -a code"
+  },
+  "dependencies": {
+    "nexmo": "1.1.x"
+  },
+  "devDependencies": {
+    "hapi": "15.2.x",
+    "proxyquire": "1.7.x",
+    "code": "4.0.x",
+    "lab": "11.1.x",
+    "nexmo": "1.1.x",
+    "coveralls": "2.11.x"
+  }
+}

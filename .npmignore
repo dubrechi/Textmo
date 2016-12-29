@@ -1,0 +1,6 @@
+**/.*
+*.lock
+*.yml
+*.md
+test
+runme
