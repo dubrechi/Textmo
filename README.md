@@ -26,7 +26,7 @@ const textMoConfig = {
 };
 
 server.register({
-    register: TextMo,
+    plugin: TextMo,
     options: {
         config: textMoConfig
     }
@@ -63,16 +63,17 @@ const smsConfig = {
     options: {}
 };
 
-request.server.plugins.textmo.send(smsConfig, (err, res) => {
 
-    if (err) {
+request.server.plugins.textmo.send(smsConfig)
+    .then(function (res) {
+
+        console.log(res)
+    })
+    .catch(function (err) {
+
         console.log(err);
+    });
 
-            return reply(err)
-    }
-
-    return reply(res);
-});
 ```
 * `options` - parameter is optional. See [SMS API Reference](https://docs.nexmo.com/messaging/sms-api/api-reference#request)
 

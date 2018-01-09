@@ -1,30 +1,25 @@
 'use strict';
 
 const Hapi = require('hapi');
-const Code = require('code');
 const Lab = require('lab');
 const proxyquire = require('proxyquire');
-
 const lab = exports.lab = Lab.script();
 const beforeEach = lab.beforeEach;
 const describe = lab.describe;
-const it = lab.it;
-const expect = Code.expect;
+const { expect, it } = lab;
 
 const internals = {
     error: null,
     res: {},
     smsConfig: {
         sender: 'Adam',
-        recipient: '639183345789',
+        recipient: '639363912365',
         message: 'Don not eat the fruit',
         options: {}
     },
     init: () => {
 
         internals.server = new Hapi.Server();
-        internals.server.connection();
-        internals.server.initialize();
     }
 };
 
@@ -41,90 +36,78 @@ const TextMo = proxyquire('../lib', {
     }
 });
 
-internals.register = (options, next) => {
+internals.register = (options) => {
 
-    internals.server.register({
-        register: TextMo,
+    return internals.server.register({
+        plugin: TextMo,
         options: options
-    }, (err) => {
-
-        return next(err);
     });
 };
 
 describe('Registering the plugin', () => {
 
-    beforeEach((done) => {
+    beforeEach(() => {
 
         internals.init();
 
-        return done();
     });
 
-    it('Should return error given there is no given config', (done) => {
+    it('Should return error given there is no given config', () => {
 
         const options = {};
 
-        internals.register(options, (err) => {
+        internals.register(options)
+            .catch(function (err) {
 
-            expect(err).to.exist();
+                expect(err).to.exist();
 
-            return done();
-        });
+            });
     });
 
-    it('Should create registration with the use of default config', (done) => {
+    it('Should create registration with the use of default config', () => {
 
         const options = {
             config: {
-                apiKey: '4e388fd8',
-                apiSecret: '28cbb8339fdb7ddd',
-                // applicationId: '',
-                // privateKey: '',
+                apiKey: '6db4b234',
+                apiSecret: 'b72f98f6b8c77bdc',
                 options: {}
             }
         };
 
-        internals.register(options, (err) => {
-
-            expect(err).to.not.exist();
-
-            return done();
-        });
+        internals.register(options)
+            .then(function () {
+            });
     });
 });
 
 describe('Sending text message', () => {
 
-    it('Should send a text message', (done) => {
+    it('Should send a text message', () => {
 
-        internals.server.plugins.textmo.send(internals.smsConfig, (err, res) => {
+        internals.server.plugins.textmo.send(internals.smsConfig)
+            .then(function (res) {
 
-            expect(err).to.not.exist();
-            expect(res).to.exist();
-
-            return done();
-        });
+                expect(res).to.exist();
+            });
     });
 
-    it('Should send a text message synchronously', (done) => {
+    it('Should send a text message synchronously', () => {
 
-        expect(internals.server.plugins.textmo.send(internals.smsConfig)).to.not.exist();
+        internals.server.plugins.textmo.send(internals.smsConfig)
+            .then(function (res) {
 
-        return done();
+                expect(res).to.exist();
+            });
     });
 
-    it('Should throw error', (done) => {
+    it('Should throw error', () => {
 
         internals.error = {};
         internals.res = null;
 
-        internals.server.plugins.textmo.send({}, (err, res) => {
+        internals.server.plugins.textmo.send({}).catch(function (err) {
 
             expect(err).to.exist();
-            expect(res).to.not.exist();
-
-            return done();
         });
     });
 });
