@@ -52,6 +52,11 @@ describe('Registering the plugin', () => {
 
     });
 
+    it('Should have pkg', () => {
+
+        expect(TextMo.plugin.pkg).to.exist();
+    });
+
     it('Should return error giving wrong register', () => {
 
         const options = {};
