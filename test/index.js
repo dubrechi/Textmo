@@ -52,6 +52,21 @@ describe('Registering the plugin', () => {
 
     });
 
+    it('Should return error giving wrong register', () => {
+
+        const options = {};
+
+        internals.server.register({
+            plugin: '0',
+            options: options
+        })
+            .catch(function (err) {
+
+                expect(err).to.exist();
+
+            });
+    });
+
     it('Should return error given there is no given config', () => {
 
         const options = {};
