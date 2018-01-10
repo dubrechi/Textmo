@@ -3,10 +3,12 @@
 const Hapi = require('hapi');
 const Lab = require('lab');
 const proxyquire = require('proxyquire');
+const { expect } = require('code');
 const lab = exports.lab = Lab.script();
 const beforeEach = lab.beforeEach;
 const describe = lab.describe;
-const { expect, it } = lab;
+const { it } = lab;
+
 
 const internals = {
     error: null,
