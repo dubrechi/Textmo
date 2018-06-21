@@ -8,10 +8,13 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "lab -c -v -L -a code"
+    "test": "lab -c -v -L -a code",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "nexmo": "2.1.x"
+    "nexmo": "2.1.x",
+    "snyk": "^1.83.0"
   },
   "devDependencies": {
     "hapi": ">=17.2.x",
@@ -20,5 +23,6 @@
     "lab": "15.1.x",
     "nexmo": "2.1.x",
     "coveralls": "3.0.x"
-  }
+  },
+  "snyk": true
 }
