@@ -11,7 +11,7 @@
     "test": "lab -c -v -L -a code"
   },
   "dependencies": {
-    "nexmo": "2.1.x"
+    "nexmo": "2.1.1"
   },
   "devDependencies": {
     "hapi": ">=17.2.x",
