@@ -11,14 +11,14 @@
     "test": "lab -c -v -L -a code"
   },
   "dependencies": {
-    "nexmo": "2.1.x"
+    "nexmo": "2.4.1"
   },
   "devDependencies": {
     "hapi": ">=17.2.x",
     "proxyquire": "1.8.x",
     "code": "5.1.x",
     "lab": "15.1.x",
-    "nexmo": "2.1.x",
+    "nexmo": "2.4.1",
     "coveralls": "3.0.x"
   }
 }
